@@ -1,0 +1,5 @@
+cmdctrl:
+   websocket:
+      host: localhost
+      port: 4444
+      password: 
