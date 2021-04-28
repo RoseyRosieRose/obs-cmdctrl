@@ -15,6 +15,10 @@ Utilising [cliche](https://github.com/budhash/cliche) for the user interface.
  * Remote desktop puts strain upon target computer, it's old and rickety, streaming takes a lot out of it.
  * Web interfaces that exist for OBS-websocket are all kitchy proof of concepts / customisable.
    * I've long maintained that Web Applications are an oxymoron. (They are neither of the web or full applications).
+ * [OBS-Midi](https://obsproject.com/forum/resources/obs-midi.1023/) is a nice project, but is written in C++ and I've had crashes.
+   * Not actively maintained?
+   * Using OBS-Websocket gives us a somewhat stable ABI to attack.
+   * Using OBS-Websocket allows me to run application and midi device on my main machine.
  * I have an AKAI MPK Mini Midi controller lying around. 
  
 ### What would sastisifice and get me 80% of what I need?
