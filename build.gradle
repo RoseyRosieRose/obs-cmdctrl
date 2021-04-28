@@ -18,6 +18,7 @@ configurations {
 
 dependencies {
 	implementation 'com.budhash.cliche:cliche-shell:0.9.3'
+	implementation 'de.vandermeer:asciitable:0.3.2'
 
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'

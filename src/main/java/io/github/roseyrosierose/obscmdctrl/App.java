@@ -25,7 +25,7 @@ public class App implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    Shell shell = ShellFactory.createConsoleShell("cmdctrl", "CmdCtrl", mainMenu);
+    Shell shell = ShellFactory.createConsoleShell("cmdctrl", null, mainMenu);
     shell.commandLoop();
   }
 }
