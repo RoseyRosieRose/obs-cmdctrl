@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A simple application to bind midi events to OBS actions, via the obs-websocket api.
+A simple application to bind midi events to [OBS](https://github.com/obsproject/obs-studio) actions, via [obs-websocket](https://github.com/Palakis/obs-websocket).
 
 Built upon Spring Boot and Utilising [cliche](https://github.com/budhash/cliche) for the user interface.
 
@@ -51,5 +51,5 @@ Built upon Spring Boot and Utilising [cliche](https://github.com/budhash/cliche)
 
 ## Progress
 
-✔️ Connecting to OBS 
-✔️ Authentication Implemented.
+* Connecting to OBS ✔️
+* Authentication Implemented. ✔️
