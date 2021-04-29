@@ -1,4 +1,6 @@
 plugins {
+  	id 'com.github.sherter.google-java-format' version '0.9'
+    id "de.undercouch.download" version "4.1.1"
 	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
@@ -6,7 +8,7 @@ plugins {
 
 group = 'io.github.roseyrosierose'
 version = '0.1.0-SNAPSHOT'
-sourceCompatibility = '8'
+sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
@@ -16,9 +18,16 @@ configurations {
     all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 }
 
+googleJavaFormat {
+  toolVersion = '1.6'
+}
+
 dependencies {
+	implementation 'org.java-websocket:Java-WebSocket:1.5.1'
 	implementation 'com.budhash.cliche:cliche-shell:0.9.3'
 	implementation 'de.vandermeer:asciitable:0.3.2'
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	implementation 'com.google.guava:guava:30.1.1-jre'
 
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'

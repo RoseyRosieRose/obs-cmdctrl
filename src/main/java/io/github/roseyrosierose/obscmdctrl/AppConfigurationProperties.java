@@ -3,16 +3,17 @@ package io.github.roseyrosierose.obscmdctrl;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
+@Component
 @ConfigurationProperties(prefix = "cmdctrl")
 public class AppConfigurationProperties {
 
   private WebsocketProperties websocket;
 
   public static class WebsocketProperties {
-    @NotBlank private String address;
+    @NotBlank private String host;
 
     @Min(1)
     @Max(65000)
@@ -20,12 +21,12 @@ public class AppConfigurationProperties {
 
     private String password = null;
 
-    public String getAddress() {
-      return address;
+    public String getHost() {
+      return host;
     }
 
-    public void setAddress(String address) {
-      this.address = address;
+    public void setHost(String host) {
+      this.host = host;
     }
 
     public Integer getPort() {

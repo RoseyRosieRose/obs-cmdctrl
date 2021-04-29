@@ -8,6 +8,14 @@
 		<Property name="LOG_PATTERN">%d{ISO8601} %p (%t) [%c]: %m%n</Property>
 	</Properties>
 	<Appenders>
+		<Console name="stdout" target="SYSTEM_OUT"
+			ignoreExceptions="false">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+		<Console name="stderr" target="SYSTEM_ERR"
+			ignoreExceptions="false">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
 		<RollingFile name="appLog" fileName="logs/obs-cmdctrl.log"
 			filePattern="logs/obs-cmdctrl-%d{yyyy-MM-dd}-%i.log">
 			<PatternLayout pattern="${LOG_PATTERN}" />
@@ -18,8 +26,17 @@
 		</RollingFile>
 	</Appenders>
 	<Loggers>
-		<Root level="INFO">
-			<AppenderRef ref="appLog" />
+		<Root level="ERROR" additivity="false">
+  			<AppenderRef ref="stderr"/>
 		</Root>
+		<Logger name="com" level="INFO" additivity="true">
+			<AppenderRef ref="appLog" />
+		</Logger>
+		<Logger name="io" level="INFO" additivity="true">
+			<AppenderRef ref="appLog" />
+		</Logger>
+		<Logger name="org" level="INFO" additivity="true">
+			<AppenderRef ref="appLog" />
+		</Logger>
 	</Loggers>
 </Configuration>
