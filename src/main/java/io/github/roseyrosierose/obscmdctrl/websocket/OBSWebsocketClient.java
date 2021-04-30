@@ -1,10 +1,5 @@
 package io.github.roseyrosierose.obscmdctrl.websocket;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.TextNode;
 import java.net.URI;
 import java.security.MessageDigest;
 import java.util.Arrays;
@@ -16,12 +11,20 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 import org.java_websocket.util.Base64;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.BooleanNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
 
 public class OBSWebsocketClient extends WebSocketClient {
 
@@ -80,18 +83,28 @@ public class OBSWebsocketClient extends WebSocketClient {
     logger.info("WSRECV => {}", message);
     try {
       JsonNode root = objectMapper.readTree(message);
-      String requestId = root.get("message-id").asText();
-      String requestType = requestMsgTypeMap.remove(requestId);
+      String requestId = "heartbeat";
+      String requestType = "Heartbeat";
+      if (root.has("message-id")) {
+        requestId = root.get("message-id").asText();
+        requestType = requestMsgTypeMap.remove(requestId);
+      }
+
       switch (requestType) {
+        case "Heartbeat":
+          logger.info(message);
+          break;
         case "Authenticate":
           loggedIn.compareAndSet(false, true);
           logger.info("Sucessfully authenticated with OBS");
+          sendRequest("SetHeartbeat", Map.of("enable", BooleanNode.TRUE));
           break;
         case "GetAuthRequired":
           boolean authRequired = root.get("authRequired").asBoolean();
           if (!authRequired) {
             logger.info("Authentication not required for OBS");
             loggedIn.compareAndSet(false, true);
+            sendRequest("SetHeartbeat", Map.of("enable", BooleanNode.TRUE));
             break;
           }
 
