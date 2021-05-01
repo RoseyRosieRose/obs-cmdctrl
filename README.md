@@ -53,3 +53,11 @@ Built upon Spring Boot and Utilising [cliche](https://github.com/budhash/cliche)
 
 * Connecting to OBS ✔️
 * Authentication Implemented. ✔️
+* Reading keys from Midi ✔️
+
+## TODO
+
+* Ditch CommandLine interface library for something better, let's have an overall status display and nice interface.
+* Implement basic scene changing request
+* Basic bind key to scene change via yaml configuration
+* Expand to other types of requerst

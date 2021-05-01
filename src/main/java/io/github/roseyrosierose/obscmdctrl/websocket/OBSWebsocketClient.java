@@ -97,7 +97,7 @@ public class OBSWebsocketClient extends WebSocketClient {
         case "Authenticate":
           loggedIn.compareAndSet(false, true);
           logger.info("Sucessfully authenticated with OBS");
-          sendRequest("SetHeartbeat", Map.of("enable", BooleanNode.TRUE));
+          sendRequest("SetHeartbeat", Map.of("enable", BooleanNode.FALSE));
           break;
         case "GetAuthRequired":
           boolean authRequired = root.get("authRequired").asBoolean();
