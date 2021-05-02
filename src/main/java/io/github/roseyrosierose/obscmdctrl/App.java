@@ -1,10 +1,7 @@
 package io.github.roseyrosierose.obscmdctrl;
 
-import com.budhash.cliche.Shell;
-import com.budhash.cliche.ShellFactory;
-import io.github.roseyrosierose.obscmdctrl.menu.MainMenu;
-import io.github.roseyrosierose.obscmdctrl.menu.MidiMenu;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,8 +11,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties
 public class App implements CommandLineRunner {
 
-  @Autowired private MainMenu mainMenu;
-  @Autowired private MidiMenu midiMenu;
+  private Logger logger = LogManager.getLogger();
 
   static {
     System.setProperty("spring.config.name", "config");
@@ -27,8 +23,7 @@ public class App implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    Shell shell = ShellFactory.createConsoleShell("cmdctrl", null, mainMenu);
-    shell.addAuxHandler(midiMenu, "midi");
-    shell.commandLoop();
+    CmdCtrlJFrame ui = new CmdCtrlJFrame();
+    ui.run();
   }
 }

@@ -4,7 +4,7 @@
 
 A simple application to bind midi events to [OBS](https://github.com/obsproject/obs-studio) actions, via [obs-websocket](https://github.com/Palakis/obs-websocket).
 
-Built upon Spring Boot and Utilising [cliche](https://github.com/budhash/cliche) for the user interface.
+Built upon Spring Boot and Utilising [lanterna](https://github.com/mabe02/lanterna) for the user interface.
 
 ## Why?
 
@@ -57,7 +57,7 @@ Built upon Spring Boot and Utilising [cliche](https://github.com/budhash/cliche)
 
 ## TODO
 
-* Ditch CommandLine interface library for something better, let's have an overall status display and nice interface.
+* ~Ditch CommandLine interface library for something better, let's have an overall status display and nice interface.~
 * Implement basic scene changing request
 * Basic bind key to scene change via yaml configuration
 * Expand to other types of requerst
